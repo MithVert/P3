@@ -1,2 +1,4 @@
-class ErreurFichier(Exception):
+class NoFile(Exception):
+    
+class UnusableMapFile(Exception):
     
