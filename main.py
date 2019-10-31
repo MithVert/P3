@@ -1,8 +1,9 @@
 import numpy as np
+
 import pygame as pg
 import os
 import sys
-os.chdir(os.path.dirname(os.path.realpath(sys.argv[0])))
+# os.chdir(os.path.dirname(os.path.realpath(sys.argv[0])))
 # os.chdir("/home/gery/Documents/OC/Macgyver/code")
 from map import *
 from case import *
