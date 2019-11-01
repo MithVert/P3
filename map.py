@@ -1,8 +1,14 @@
+
 class Map():
-    def __init__(self):
+
+    def __init__(self,mapsize):
+
         self.mapArray = np.full((mapsize,mapsize),Case())
         self.itemlist=["needle","ether","tube"]
-    def __readmap__(self,mapfile):
+        self.size = mapsize
+
+    def readmap(self,mapfile):
+
         file = open(mapfile,'r')
         for i in range(mapsize):
             line=file.readline()
@@ -13,7 +19,9 @@ class Map():
                     self.mapArray[i,j].wall=True
                 else:
                     raise UnusableMapFile
-    def __randmap__(self):
+    
+    def randmap(self):
+
         depart = randint(mapsize-1)
         mazeExit=False
         y=depart
@@ -53,3 +61,20 @@ class Map():
                         self.mapArray[j,i].wall=False
                     else:
                         self.mapArray[j,i].wall=True
+    
+    def placeitems(self):
+
+        for item in self.itemlist:
+            x,y = randint(self.size), randint(self.size)
+            while not(self.mapArray[y,x].pathable) or self.mapArray[y,x].item:
+                x,y = randint(self.size), randint(self.size)
+            self.mapArray[y,x].item = True
+            self.mapArray[y,x].itemtype = item
+    
+    def pickedup(self,x,y):
+    
+        if self.mapArray[y,x].item:
+            self.mapArray[y,x].item = False
+            return self.mapArray[y,x].itemtype
+        else:
+            return None

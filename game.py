@@ -1,2 +1,2 @@
 class Game():
-    self.
+    def __init__(map
