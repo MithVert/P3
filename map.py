@@ -78,3 +78,16 @@ class Map():
             return self.mapArray[y,x].itemtype
         else:
             return None
+
+    def displaymap(self, screen, wall, guardian, needle, tube, ether):
+        for i in self.mapArray:
+            for j in i:
+                if j.pathable:
+                    if j.item:
+                        if j.itemtype = "needle":
+
+                        elif j.itemtype = "tube":
+
+                        elif j.itemtype = "ether":
+                    elif j.guardian:
+                        
