@@ -11,3 +11,4 @@ from mac  import *
 import parameters as par
 import functions as fct
 mac = pygame.image.load("MacGyver50.png")
+mapsize = 15

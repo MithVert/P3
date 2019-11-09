@@ -85,7 +85,7 @@ class Map():
                 if j.pathable:
                     if j.item:
                         if j.itemtype = "needle":
-
+                            needle[1].move(
                         elif j.itemtype = "tube":
 
                         elif j.itemtype = "ether":
