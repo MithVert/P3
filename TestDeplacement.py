@@ -6,8 +6,8 @@ scale = 50
 background = 0, 0, 0
 screen = pygame.display.set_mode(size)
 screen.fill(background)
-mac = pygame.image.load("MacGyver50.png")
-black = pygame.image.load("Black50.png")
+mac = pygame.image.load("MacGyver.png")
+black = pygame.image.load("Black.png")
 macrect = mac.get_rect()
 while 1:
     for event in pygame.event.get():

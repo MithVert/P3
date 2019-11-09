@@ -10,19 +10,17 @@ class Map():
     def readmap(self,mapfile):
 
         file = open(mapfile,'r')
-        for i in range(mapsize):
+        for i in range(self.size):
             line=file.readline()
-            for j in range(mapsize):
+            for j in range(self.size):
                 if line[j]=="1":
                     self.mapArray[i,j].pathable=True
                 elif line[j]=="0":
                     self.mapArray[i,j].wall=True
-                else:
-                    raise UnusableMapFile
     
     def randmap(self):
 
-        depart = randint(mapsize-1)
+        depart = randint(self.size-1)
         mazeExit=False
         y=depart
         x=0
@@ -36,12 +34,12 @@ class Map():
                 listMove.append(("x",-1))
             if y>0:
                 listMove.append(("y",-1))
-            if y < mapsize-1:
+            if y < self.size-1:
                 listMove.append("y",1)
             choiceMove = listMove[randint(len(listMove)-1)]
             if choiceMove[0] == "x":
                 x = x + choiceMove[1]
-                if x == mapsize-1:
+                if x == self.size-1:
                     mazeExit=True
                     self.mapArray[y,x].guardian=True
                     self.mapArray[y,x].pathable=True
@@ -53,8 +51,8 @@ class Map():
                     if randint(1):
                         j.pathable=False
                         j.wall=True
-        for i in range(mapsize):#defining which case is a path or a wall
-            for j in range(mapsize):
+        for i in range(self.size):#defining which case is a path or a wall
+            for j in range(self.size):
                 if not(j.wall or j.pathable):
                     if isPathable(self.mapArray,j,i):
                         self.mapArray[j,i].pathable=True
@@ -78,16 +76,3 @@ class Map():
             return self.mapArray[y,x].itemtype
         else:
             return None
-
-    def displaymap(self, screen, wall, guardian, needle, tube, ether):
-        for i in self.mapArray:
-            for j in i:
-                if j.pathable:
-                    if j.item:
-                        if j.itemtype = "needle":
-                            needle[1].move(
-                        elif j.itemtype = "tube":
-
-                        elif j.itemtype = "ether":
-                    elif j.guardian:
-                        

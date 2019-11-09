@@ -12,11 +12,9 @@ class Macgyver():
 
     def combat(self):
         if "syringue" in self.items:
-            print("VICTORY")
-            sys.exit()
+            return "VICTORY"
         else:
-            print ("DEFEAT")
-            sys.exit()
+            return "DEFEAT"
 
     def move(self, direction):
         if direction == "UP":
@@ -33,5 +31,6 @@ class Macgyver():
                     self.x = self.x - 1
         elif direction == "RIGHT":
             if self.x < self.map.size - 1:
-                if map.mapArray[self.y,self.x + 1].pathable:
+                if self.map.mapArray[self.y,self.x + 1].pathable:
                     self.x = self.x + 1
+        self.rect = pygame.rect(self.x, self.y)

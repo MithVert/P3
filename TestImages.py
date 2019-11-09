@@ -6,5 +6,5 @@ scale = 50
 background = 0,0,0
 screen = pygame.display.set_mode(size)
 screen.fill(background)
-wall = pygame.image.load("Wall50.png")
+wall = pygame.image.load("Wall.png")
 screen.blit()
