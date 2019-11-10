@@ -1,5 +1,5 @@
 import numpy as np
-import pygame as pg
+import pygame
 import sys
 from map import *
 from case import *

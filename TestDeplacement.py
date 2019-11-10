@@ -6,9 +6,11 @@ scale = 50
 background = 0, 0, 0
 screen = pygame.display.set_mode(size)
 screen.fill(background)
-mac = pygame.image.load("MacGyver.png")
-black = pygame.image.load("Black.png")
+mac = pygame.image.load("macgyver.png")
+black = pygame.image.load("black.png")
 macrect = mac.get_rect()
+screen.blit(mac,macrect)
+pygame.display.flip()
 while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
