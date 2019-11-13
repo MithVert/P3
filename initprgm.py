@@ -1,3 +1,5 @@
+import pygame
+
 def initprgm():
     pygame.display.init()
     listmod = pygame.display.list_modes()
@@ -25,5 +27,4 @@ def initprgm():
     needle = needle.convert()
     displaysize = scale * 16, scale*15
     screen = pygame.display.set_mode(displaysize)
-    pygame.display.flip()
-    return displaysize, scale, mac, guardian, wall, black, syringue, ether, tube, needle
+    return displaysize, scale, mac, guardian, wall, black, syringue, ether, tube, needle, screen

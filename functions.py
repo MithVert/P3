@@ -1,8 +1,5 @@
-def randint(a):#return int in [0:a]
-    return round(random.sample()*int(a))
-
 def isPathable(mazemap,x,y):
-    maxima = mazemap.
+    maxima = mazemap.shape[0]
     if x>maxima or y>maxima or x<0 or y<0:
         return False
     elif mazemap[y,x].pathable:
