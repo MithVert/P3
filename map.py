@@ -11,14 +11,19 @@ class Map():
         self.mapArray = np.full((mapsize,mapsize),Case())
         self.itemlist=["needle","ether","tube"]
         self.size = mapsize
+        self.spaces = []
 
     def readmap(self,mapfile):
+
         file = open(mapfile,'r')
         for i in range(15):
             line=file.readline()
+            print(line)
             for j in range(15):
                 if line[j]=="1":
                     self.mapArray[i,j].pathable=True
+                    self.spaces.append((j,i))
+                    print("1")
                 elif line[j]=="0":
                     self.mapArray[i,j].wall=True
     
@@ -65,13 +70,14 @@ class Map():
                         self.mapArray[j,i].wall=True
     
     def placeitems(self):
-        
+
+        maxima = len(self.spaces)-1
+
         for item in self.itemlist:
-            x,y = rd.randint(0, 15), rd.randint(0, 15)
-            while not(self.mapArray[y,x].pathable) or self.mapArray[y,x].item:
-                x,y = rd.randint(0, 15), rd.randint(0, 15)
+            x,y = self.spaces[rd.randint(0,maxima)]
             self.mapArray[y,x].item = True
             self.mapArray[y,x].itemtype = item
+            
     
     def pickedup(self,x,y):
     

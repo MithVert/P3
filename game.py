@@ -27,23 +27,39 @@ class Game():
         self.screen.fill((0, 0, 0))
         pygame.display.flip()
         for i in range(15):
+
             for j in range(15):
+
                 if self.mac.map.mapArray[j,i].wall:
+
                     self.wallrect.move(i*self.scale,j*self.scale)
                     self.screen.blit(self.wallimg,self.wallrect)
+
                 elif self.mac.map.mapArray[j,i].guardian:
+
                     self.guardianrect.move(i*self.scale,j*self.scale)
                     self.screen.blit(self.guardianimg,self.guardianrect)
+                    
+
                 elif self.mac.map.mapArray[j,i].item:
+
                     if self.mac.map.mapArray[j,i].itemtype == "ether":
+
                         self.etherrect.move(i*self.scale,j*self.scale)
                         self.screen.blit(self.etherimg,self.etherrect)
+
                     elif self.mac.map.mapArray[j,i].itemtype == "tube":
+
                         self.tuberect.move(i*self.scale,j*self.scale)
                         self.screen.blit(self.tubeimg,self.tuberect)
+
                     elif self.mac.map.mapArray[j,i].itemtype == "needle":
+
                         self.needlerect.move(i*self.scale,j*self.scale)
                         self.screen.blit(self.needleimg,self.needlerect)
+                        
+                pygame.display.flip()
+
         pygame.display.flip()
 
     def move(self,direction):
