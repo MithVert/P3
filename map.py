@@ -1,94 +1,55 @@
-import numpy as np
-from case import *
-from functions import *
 import random as rd
 import sys
 
 class Map():
 
-    def __init__(self,mapsize):
+    def __init__(self):
+        
+        self.map = []
 
-        self.mapArray = np.full((mapsize,mapsize),Case())
-        self.itemlist=["needle","ether","tube"]
-        self.size = mapsize
-        self.spaces = []
+    def readmap(self,mapfile): #check
 
-    def readmap(self,mapfile):
+        file = open(mapfile,"r", encoding='utf8')
+        lines = file.readlines()
+        for i in lines:
+            self.map.append(i[:-1])
 
-        file = open(mapfile,'r')
-        for i in range(15):
-            line=file.readline()
-            print(line)
-            for j in range(15):
-                if line[j]=="1":
-                    self.mapArray[i,j].pathable=True
-                    self.spaces.append((j,i))
-                    print("1")
-                elif line[j]=="0":
-                    self.mapArray[i,j].wall=True
-    
-    def randmap(self):
+    def placeitems(self): #check
 
-        depart = rd.randint(0, 15)
-        mazeExit=False
-        y=depart
-        x=0
-        while mazeExit == False:
-            self.mapArray[y,x].pathable = True
-            listMove=[]
-            listMove.append(("x",1))
-            listMove.append(("x",1))
-            listMove.append(("x",1))
-            if x>0:
-                listMove.append(("x",-1))
-            if y>0:
-                listMove.append(("y",-1))
-            if y < self.size-1:
-                listMove.append(("y",1))
-            choiceMove = listMove[rd.randint(0, len(listMove)-1)]
-            if choiceMove[0] == "x":
-                x = x + choiceMove[1]
-                if x == self.size-1:
-                    mazeExit=True
-                    self.mapArray[y,x].guardian=True
-                    self.mapArray[y,x].pathable=True
-            else:
-                y = y + choiceMove[1]
-        for i in self.mapArray:#placing walls randomly
-            for j in i:
-                if not(j.wall or j.pathable):
-                    if rd.randint(0, 1):
-                        j.pathable=False
-                        j.wall=True
-        for i in range(self.size):#defining which case is a path or a wall
-            for j in range(self.size):
-                if not(self.mapArray[j,i].wall or self.mapArray[j,i].pathable):
-                    if isPathable(self.mapArray,j,i):
-                        self.mapArray[j,i].pathable=True
-                        self.mapArray[j,i].wall=False
-                    else:
-                        self.mapArray[j,i].wall=True
-    
-    def placeitems(self):
+        maxima = 0
 
-        maxima = len(self.spaces)-1
+        itemlist=["needle","ether","tube"]
+        itemcase=[]
 
-        for item in self.itemlist:
-            x,y = self.spaces[rd.randint(0,maxima)]
-            self.mapArray[y,x].item = True
-            self.mapArray[y,x].itemtype = item
+        for i in self.map :
+            maxima = maxima + i.count("1")
+        
+        itemplaces = rd.sample(range(maxima),3)
+        c = 0
+        for i in range(len(self.map)) :
+            for j in range(len(self.map[i])) :
+                if self.map[i][j] == "1" :
+                    c = c + 1
+                    if c in itemplaces:
+                        self.map[i] = self.map[i][:j]+"2"+self.map[i][j+1:]
+                        itemcase.append((i,j))
+        
+        self.items = {}
+
+        for i in range(3):
+            self.items[itemcase[i]] = itemlist[i]
             
     
-    def pickedup(self,x,y):
+    def pickedup(self,i,j):
     
-        if self.mapArray[y,x].item:
-            self.mapArray[y,x].item = False
-            return self.mapArray[y,x].itemtype
+        if self.map[i][j] == "2":
+            self.map[i] = self.map[i][:j]+"1"+self.map[i][j+1:]
+            return self.items[(i,j)]
         else:
             return None
     
-    def startermac(self):
+    def startermac(self): #check
+
         for i in range(15):
-            if self.mapArray[i,0].pathable:
+            if int(self.map[i][0]) > 0:
                 return i
-        return 0
