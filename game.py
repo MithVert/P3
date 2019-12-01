@@ -12,7 +12,7 @@ class Game():
         for i in listmod:
             listsize.append(min(i))
         
-        self.scale = max(listsize)//16
+        self.scale = min(max(listsize)//16, 50)
         self.macimg = pygame.image.load("macgyver.png")
         self.macrect = self.macimg.get_rect().move(0,self.map.startermac()*self.scale)
         self.guardianimg = pygame.image.load("guardian.png")
