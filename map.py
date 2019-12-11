@@ -61,7 +61,7 @@ class Map():
             if int(self.map[i][0]) > 0:
                 return i
     
-    def moveup(self,mac):
+    def canmoveup(self,mac):
 
         if mac.i > 0 :
             if int(self.map[mac.i-1][mac.j]) > 0 :
@@ -71,7 +71,7 @@ class Map():
         else :
             return False
 
-    def movedown(self,mac):
+    def canmovedown(self,mac):
 
         if mac.i < 14 :
             if int(self.map[mac.i+1][mac.j]) > 0 :
@@ -81,7 +81,7 @@ class Map():
         else:
             return False
     
-    def moveleft(self,mac):
+    def canmoveleft(self,mac):
 
         if mac.j > 0:
             if int(self.map[mac.i][mac.j-1]) > 0 :
@@ -91,7 +91,7 @@ class Map():
         else :
             return False
     
-    def moveright(self,mac):
+    def canmoveright(self,mac):
 
         if mac.j < 14 :
             if int(self.map[mac.i][mac.j+1]) > 0 :
