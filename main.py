@@ -3,6 +3,8 @@ from map import *
 from game import *
 from mac import *
 
+#Just some initialisation, see others files for more info
+
 map = Map()
 map.readmap("map.txt")
 map.placeguardian()
@@ -11,6 +13,8 @@ mac = Macgyver(map.startermac())
 game = Game(map)
 game.displaymap()
 game.pickup(mac)
+
+#the main loop which keeps going until the user closes the window
 
 while 1:
     for event in pygame.event.get():

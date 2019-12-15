@@ -1,31 +1,36 @@
 import random as rd
 import sys
 
+#this class enables to get all the maze's data and to place items, macgyver and the guardian in the maze
+
 class Map():
 
     def __init__(self):
         
         self.map = []
 
-    def readmap(self,mapfile): #check
-
+    def readmap(self,mapfile): 
+#reading file map.txt
         file = open(mapfile,"r", encoding='utf8')
         lines = file.readlines()
+#removing "/n" at the end of each line while creating the map object
         for i in lines:
             self.map.append(i[:-1])
 
-    def placeitems(self): #check
+    def placeitems(self): 
 
         maxima = 0
 
         itemlist=["needle","ether","tube"]
         itemcase=[]
 
+#getting the number of maze's case eligible to have an object
         for i in self.map :
             maxima = maxima + i.count("1")
-        
+#chosing 3 different cases among them
         itemplaces = rd.sample(range(maxima),3)
         c = 0
+#browsing map object while placing the items on the chosen cases
         for i in range(len(self.map)) :
             for j in range(len(self.map[i])) :
                 if self.map[i][j] == "1" :
@@ -33,34 +38,35 @@ class Map():
                     if c in itemplaces:
                         self.map[i] = self.map[i][:j]+"2"+self.map[i][j+1:]
                         itemcase.append((i,j))
-        
+#distinguishing one item from the other by listing and naming them
         self.items = {}
-
         for i in range(3):
             self.items[itemcase[i]] = itemlist[i]
 
     def placeguardian(self):
-        
+#browsing last column of the map to place the guardian there
         for i in range (len(self.map)):
             if self.map[i][-1] == "1":
                 self.map[i] = self.map[i][:-1] + "5"
                 break
             
     
+    def startermac(self):
+#browsing first column of the map to place macgyver there
+        for i in range(15):
+            if int(self.map[i][0]) > 0:
+                return i
+  
     def pickedup(self,i,j):
-    
+#returning the object to pickup in this maze's case
         if self.map[i][j] == "2":
             self.map[i] = self.map[i][:j]+"1"+self.map[i][j+1:]
             return self.items[(i,j)]
         else:
             return None
-    
-    def startermac(self): #check
 
-        for i in range(15):
-            if int(self.map[i][0]) > 0:
-                return i
-    
+
+#each of these fonction checks wether mac can move to a maze's case without going through the walls or out of the map, returns Bool
     def canmoveup(self,mac):
 
         if mac.i > 0 :
