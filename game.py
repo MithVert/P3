@@ -122,8 +122,8 @@ class Game():
         # but also about fighting the guardian
 
         # first we verify wether there is a object to loot
-        if self.map.map[mac.i][mac.j] == "2"
-        and self.map.items[(mac.i, mac.j)] not in mac.items:
+        if self.map.map[mac.i][mac.j] == "2" \
+            and self.map.items[(mac.i, mac.j)] not in mac.items:
             mac.items.append(self.map.items[(mac.i, mac.j)])
             if self.map.items[(mac.i, mac.j)] == "tube":
                 self.screen.blit(
