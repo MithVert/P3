@@ -6,4 +6,3 @@ class Macgyver():
         self.i = i
         self.j = 0
         self.items = []
-

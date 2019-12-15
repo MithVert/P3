@@ -55,11 +55,11 @@ class Game():
         pygame.display.flip()
         for i in range(15):
             for j in range(15):
-                if self.map.map[i][j] == "0":
+                if self.map[i, j] == "0":
                     self.screen.blit(
                         self.wallimg, self.originrect.move(
                             j*self.scale, i*self.scale))
-                elif self.map.map[i][j] == "2":
+                elif self.map[i, j] == "2":
                     if self.map.items[(i, j)] == "needle":
                         self.screen.blit(
                             self.needleimg, self.originrect.move(
@@ -72,7 +72,7 @@ class Game():
                         self.screen.blit(
                             self.etherimg, self.originrect.move(
                                 j*self.scale, i*self.scale))
-                elif self.map.map[i][j] == "5":
+                elif self.map[i, j] == "5":
                     self.screen.blit(
                         self.guardianimg, self.originrect.move(
                             j*self.scale, i*self.scale))
@@ -122,7 +122,7 @@ class Game():
         # but also about fighting the guardian
 
         # first we verify wether there is a object to loot
-        if self.map.map[mac.i][mac.j] == "2" \
+        if self.map[mac.i, mac.j] == "2" \
             and self.map.items[(mac.i, mac.j)] not in mac.items:
             mac.items.append(self.map.items[(mac.i, mac.j)])
             if self.map.items[(mac.i, mac.j)] == "tube":
@@ -155,7 +155,7 @@ class Game():
                         15*self.scale, 3*self.scale))
             pygame.display.flip()
         # then we check wether he may fight the guardian
-        elif self.map.map[mac.i][mac.j] == "5":
+        elif self.map[mac.i, mac.j] == "5":
             if len(mac.items) >= 3:
                     self.screen.blit(self.victory, self.originrect)
             else:

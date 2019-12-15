@@ -11,6 +11,9 @@ class Map():
 
         self.map = []
 
+    def __getitem__(self, ij):
+        return self.map[ij[0]][ij[1]]
+
     def readmap(self, mapfile):
         # reading file map.txt
         file = open(mapfile, "r", encoding='utf8')
