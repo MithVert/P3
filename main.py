@@ -3,7 +3,7 @@ from map import *
 from game import *
 from mac import *
 
-#Just some initialisation, see others files for more info
+# Just some initialisation, see others files for more info
 
 map = Map()
 map.readmap("map.txt")
@@ -14,7 +14,7 @@ game = Game(map)
 game.displaymap()
 game.pickup(mac)
 
-#the main loop which keeps going until the user closes the window
+# the main loop which keeps going until the user closes the window
 
 while 1:
     for event in pygame.event.get():
@@ -23,3 +23,4 @@ while 1:
         elif event.type == pygame.KEYUP:
             game.move(mac, event.key)
             game.pickup(mac)
+
