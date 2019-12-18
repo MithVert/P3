@@ -39,7 +39,6 @@ class Game():
         self.tubeimg = pygame.image.load("tube.png")
         self.needleimg = pygame.image.load("needle.png")
         self.blackimg = pygame.image.load("black.png")
-        self.littleblackimg = pygame.image.load("littleblack.png")
         self.inventoryimg = pygame.image.load("inventory.png")
         self.whiteimg = pygame.image.load("white.png")
         self.screen = pygame.display.set_mode((self.scale*16, self.scale*15))
