@@ -1,11 +1,11 @@
 import random as rd
 import sys
 
-# this class enables to get all the maze's data
-# and to place items, macgyver and the guardian in the maze
-
 
 class Map():
+
+    """this class enables to get all the maze's data
+    and to place items, macgyver and the guardian in the maze"""
 
     def __init__(self):
 
@@ -68,11 +68,13 @@ class Map():
         else:
             return None
 
-    # each of these fonction checks wether mac can move
-    # to a maze's case without going through the walls or out of the map
-    # returns Bool
+
 
     def canmoveup(self, mac):
+
+        """ checks wether mac can move up
+        to a maze's case without going through 
+        the walls or out of the map, returns Bool"""
 
         if mac.i > 0:
             if int(self.map[mac.i-1][mac.j]) > 0:
@@ -84,6 +86,10 @@ class Map():
 
     def canmovedown(self, mac):
 
+        """ checks wether mac can move down
+        to a maze's case without going through 
+        the walls or out of the map, returns Bool"""
+
         if mac.i < 14:
             if int(self.map[mac.i+1][mac.j]) > 0:
                 return True
@@ -94,6 +100,10 @@ class Map():
 
     def canmoveleft(self, mac):
 
+        """ checks wether mac can move left
+        to a maze's case without going through 
+        the walls or out of the map, returns Bool"""
+
         if mac.j > 0:
             if int(self.map[mac.i][mac.j-1]) > 0:
                 return True
@@ -103,6 +113,10 @@ class Map():
             return False
 
     def canmoveright(self, mac):
+
+        """ checks wether mac can move right
+        to a maze's case without going through 
+        the walls or out of the map, returns Bool"""
 
         if mac.j < 14:
             if int(self.map[mac.i][mac.j+1]) > 0:

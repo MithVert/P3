@@ -1,12 +1,13 @@
 import pygame
 import sys
 
-# game is the main class of the program
-# it is the one which controls the display
-# and uses the other classes as ressources
-
 
 class Game():
+
+    """game is the main class of the program 
+    it is the one which controls the display 
+    and uses the other classes as ressources"""
+
     def __init__(self, map):
 
         # these lines creates a list containing all the available resolutions
