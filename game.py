@@ -20,14 +20,14 @@ class Game():
         for i in listmod:
             listsize.append(min(i))
 
-# so we can now define the resolution of our game
-# scale being the pixel height and lenght of every case of the maze
+        # so we can now define the resolution of our game
+        # scale being the pixel height and lenght of every case of the maze
         self.scale = min(max(listsize)//16, 50)
 
-# loading every image and creating two rect objects to place the images
-# note that only Macgyver will have a rect object which will move
-# while all other object will always be placed compare to the origin
-# and therefore uses the same rect : originrect
+        # loading every image and creating two rect objects to place the images
+        # note that only Macgyver will have a rect object which will move
+        # while all other object will always be placed compare to the origin
+        # and therefore uses the same rect : originrect
         self.macimg = pygame.image.load("macgyver.png")
         self.macrect = self.macimg.get_rect().move(
             0, self.map.startermac()*self.scale)
@@ -80,9 +80,9 @@ class Game():
                 pygame.display.flip()
         self.screen.blit(self.macimg, self.macrect)
 
-# distinguishing the last column from the rest
-# with a white background
-# so the user doesn't mistake the inventory for the maze
+        # distinguishing the last column from the rest
+        # with a white background
+        # so the user doesn't mistake the inventory for the maze
 
         for i in range(16):
             self.screen.blit(
