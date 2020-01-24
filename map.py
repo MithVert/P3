@@ -38,10 +38,10 @@ class Map():
         for i in range(len(self.map)):
             for j in range(len(self.map[i])):
                 if self.map[i][j] == "1":
-                    c = c + 1
                     if c in itemplaces:
                         self.map[i] = self.map[i][:j]+"2"+self.map[i][j+1:]
                         itemcase.append((i, j))
+                    c = c + 1
         # distinguishing one item from the other by listing and naming them
         self.items = {}
         for i in range(3):
